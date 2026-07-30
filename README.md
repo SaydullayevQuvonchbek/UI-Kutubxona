@@ -43,7 +43,14 @@ Ushbu dastur Android Native platformasida **Kotlin** tilida va **Material Compon
 
 ---
 
-## 🚀 Dasturni ishga tushirish
+## 🚀 Dasturni ishga tushirish va O'rnatish
+### 1. APK orqali to'g'ridan-to'g'ri o'rnatish (Eng oson usul)
+Loyiha asosiy papkasida **`Kutubxona.apk`** fayli tayyor holatda joylashtirilgan.
+1. Ushbu `Kutubxona.apk` faylini Android telefoningizga yuklab oling.
+2. Faylni ochib, o'rnatish (Install) tugmasini bosing.
+3. Dasturni ochib, yuqoridagi demo hisoblar (`admin`/`admin` yoki `user`/`user`) orqali tizimni sinab ko'ring.
+
+### 2. Android Studio orqali ishga tushirish
 1. Loyihani **Android Studio**da oching.
 2. Gradle sinxronizatsiyani (Sync Project with Gradle Files) bajaring.
 3. Emulator yoki real Android qurilmasida `Run app (Shift + F10)` tugmasini bosing.
