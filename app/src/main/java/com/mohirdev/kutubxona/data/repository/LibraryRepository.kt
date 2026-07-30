@@ -109,7 +109,6 @@ class LibraryRepository(context: Context) {
             )
             saveBooks(defaultBooks)
 
-            // Add demo loan for user_1 ("Azizbek Rahimov")
             val now = System.currentTimeMillis()
             val tenDaysAgo = now - 10L * 24 * 60 * 60 * 1000
             val fiveDaysLater = now + 5L * 24 * 60 * 60 * 1000
@@ -135,7 +134,7 @@ class LibraryRepository(context: Context) {
                     userFullName = "Jasurbek Tursunov",
                     borrowDate = formatTimestamp(now - 15L * 24 * 60 * 60 * 1000),
                     dueDate = formatTimestamp(now - 1L * 24 * 60 * 60 * 1000),
-                    dueTimestamp = now - 1L * 24 * 60 * 60 * 1000, // Overdue demo!
+                    dueTimestamp = now - 1L * 24 * 60 * 60 * 1000,
                     isReturned = false
                 )
             )
@@ -143,7 +142,6 @@ class LibraryRepository(context: Context) {
         }
     }
 
-    // AUTHENTICATION
     fun login(username: String, pass: String): User? {
         val users = getUsers()
         val user = users.find { it.username.equals(username, ignoreCase = true) && it.password == pass }
@@ -185,7 +183,6 @@ class LibraryRepository(context: Context) {
         }
     }
 
-    // USERS MANAGEMENT
     fun getUsers(): List<User> {
         val json = prefs.getString(KEY_USERS, null) ?: return emptyList()
         val type = object : TypeToken<List<User>>() {}.type
@@ -204,7 +201,6 @@ class LibraryRepository(context: Context) {
         prefs.edit().putString(KEY_USERS, gson.toJson(users)).apply()
     }
 
-    // BOOKS MANAGEMENT
     fun getBooks(): List<Book> {
         val json = prefs.getString(KEY_BOOKS, null) ?: return emptyList()
         val type = object : TypeToken<List<Book>>() {}.type
@@ -250,7 +246,6 @@ class LibraryRepository(context: Context) {
         prefs.edit().putString(KEY_BOOKS, gson.toJson(books)).apply()
     }
 
-    // LOANS MANAGEMENT
     fun getAllLoans(): List<BookLoan> {
         val json = prefs.getString(KEY_LOANS, null) ?: return emptyList()
         val type = object : TypeToken<List<BookLoan>>() {}.type
@@ -268,7 +263,6 @@ class LibraryRepository(context: Context) {
         }
         val user = getUserById(userId) ?: return Pair(false, "Foydalanuvchi topilmadi!")
 
-        // Check if user already borrowed this book and hasn't returned it
         val activeLoans = getLoansForUser(userId).filter { !it.isReturned && it.bookId == bookId }
         if (activeLoans.isNotEmpty()) {
             return Pair(false, "Siz bu kitobni avval olgansiz va hali topshirmagansiz!")
@@ -294,7 +288,7 @@ class LibraryRepository(context: Context) {
         )
 
         val loans = getAllLoans().toMutableList()
-        loans.add(0, newLoan) // Add to top
+        loans.add(0, newLoan)
         saveLoans(loans)
 
         return Pair(true, "Kitob muvaffaqiyatli olindi!")

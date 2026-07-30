@@ -22,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
 
         repository = LibraryRepository(this)
 
-        // Check if already logged in
         val currentUser = repository.getCurrentUser()
         if (currentUser != null) {
             navigateToMain(currentUser.role)
