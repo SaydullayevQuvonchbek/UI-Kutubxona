@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mohirdev.kutubxona"
+        applicationId = "com.mohirdev.kutubxona.data.model"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
