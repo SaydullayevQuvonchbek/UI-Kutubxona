@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kutubxona"
-        tools:targetApi="34">
+        tools:targetApi="35">
 
         <activity
             android:name=".ui.auth.LoginActivity"
